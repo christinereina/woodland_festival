@@ -1,6 +1,6 @@
 require('sinatra')
 require('sinatra/reloader')
-require('./lib/album')
+require('./lib/stage')
 require('pry')
 also_reload('lib/**/*.rb')
 
@@ -17,3 +17,18 @@ end
 get('/stages/new') do
   erb(:new_stages)
 end
+
+get('/stage') do
+  @stages = Stage.all
+  erb(:stages)
+end
+
+post('/stages') do
+  name = params[:stage_name]
+  stage = Stage.new(name,nil)
+  stage.save()
+  @stages = Stage.all()
+  erb(:stages)
+end
+
+

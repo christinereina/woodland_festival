@@ -1,3 +1,5 @@
+require'pry'
+
 class Stage
 
   attr_reader :id
@@ -35,6 +37,20 @@ class Stage
 
   def delete()
     @@stages.delete(self.id)
+  end
+
+  def self.sort
+    Stage.all.sort { |a,b| a.name <=> b.name }
+  end
+
+
+  def self.search(name)
+    output = []
+    names = Stage.all.map { |a| a.name }.grep(/#{name}/)
+    names.each do |stage_name|
+      output.concat(Stage.all.select { |stage| stage.name = stage_name })
+    end
+    output
   end
 
 end

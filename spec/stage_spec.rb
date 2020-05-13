@@ -1,5 +1,6 @@
 require'rspec'
 require'stage'
+require'pry'
 
 describe Stage do
 
@@ -44,6 +45,16 @@ describe Stage do
       stage.save()
       stage.update("Da Golden Gurlz")
       expect(stage.name).to(eq("Da Golden Gurlz"))
+  end
+end
+
+describe('.search') do
+  it('will search through all stages and return stages that contain a matching name') do
+    stage = Stage.new("Gold", nil)
+    stage.save()
+    stage2 = Stage.new("Da Gold Gurlz", nil)
+    stage2.save()
+    expect(Stage.search("Gold")).to(eq([[stage],[stage2]]))
   end
 end
 
