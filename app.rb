@@ -18,6 +18,17 @@ get('/stages/new') do
   erb(:new_stages)
 end
 
+get('/stages/:id') do
+  @stages = Stage.find(params[:id].to_i())
+  erb(:stage)
+end
+
+get('/stages/:id/edit') do
+  @stages = Stage.find(params[:id].to_i())
+  erb(:edit_stage)
+end
+
+
 get('/stage') do
   @stages = Stage.all
   erb(:stages)
@@ -32,3 +43,9 @@ post('/stages') do
 end
 
 
+# patch('/stages/:id') do
+#   @stage = Stage.find(params[:id].to_i())
+#   @stage.update(params[:name])
+#   @stages = Stage.all
+#   erb(:stages)
+# end

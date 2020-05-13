@@ -10,6 +10,7 @@ class Stage
 
   def initialize(name, id)
     @name = name
+    @stage_id = stage_id
     @id = id || @@total_rows += 1
   end
 
@@ -24,6 +25,10 @@ class Stage
   def self.clear
     @@stages = {}
     @@total_rows = 0
+  end
+
+  def self.find(id)
+    @@stages[id]
   end
 
   def ==(stage_to_compare)
@@ -42,7 +47,6 @@ class Stage
   def self.sort
     Stage.all.sort { |a,b| a.name <=> b.name }
   end
-
 
   def self.search(name)
     output = []
