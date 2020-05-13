@@ -1,0 +1,15 @@
+<h1>Woodland Hills Mists</h1>
+
+<h3>Stages</h3>
+
+<% if @stages.any? %>
+  <ul>
+    <% @stages.each do |album| %>
+      <li><%= stage.name %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>There are currently no stages yet!.</p>
+<% end %>
+
+<a href="/albums/new">Add a new stage</a>
